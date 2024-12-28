@@ -150,6 +150,7 @@ public class controller {
 
     @GetMapping("/wishlist-page")
     public String goToWishlistPage(){
+        System.out.println("hello");
         return "wishlist-page";
     }
 
