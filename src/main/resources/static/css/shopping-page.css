@@ -1,0 +1,164 @@
+*{
+	margin: 0;
+}
+body{
+	background-color: #FDFAF5;
+}
+/*	shopping-section[filter,context-head,products-container[product-card],pagination-bar]	*/
+/* --------------------------shopping section------------------------- */
+.products-section{
+	background-color: #FDFAF5;
+	display: flex;
+}
+/* --------------------------end of shopping------------------------- */
+
+/* --------------------------filter section------------------------- */
+.filter{
+	width: 320px;
+	padding: 20px;
+	background-color: #FFFFFF;
+}
+.filter-main-head{
+
+}
+.filter-head{
+	font-size: 16px;
+	font-weight: 700;
+}
+.filter-list {
+    list-style: none; /* Removes bullets */
+    padding-left: 4px;
+    margin: 0;        /* Removes top/bottom margins */
+    margin-bottom: 10px;
+}
+.filter-list li {
+    margin: 0px 0; /* Add spacing between items */
+}
+.filter-list label {
+    cursor: pointer; /* Makes the text cursor a pointer */
+    display: flex;   /* Aligns checkbox and text nicely */
+    align-items: center;
+    gap: 10px;       /* Adds space between checkbox and text */
+}
+.filter-list label {
+    user-select: none; /* Prevents text selection */
+}
+.filter-list input[type="checkbox"] {
+    transform: scale(1.2); /* Slightly enlarges the checkbox */
+    cursor: pointer;       /* Makes checkbox clickable */
+}
+/* --------------------------end of filter------------------------- */
+
+/* --------------------------context head section------------------------- */
+.content{
+	flex: 1;	/* Take remaining space */
+	display: flex;
+    flex-direction: column; /* Stack context-head, products-container, pagination */
+    overflow: hidden; /* Prevent overflow issues */
+    padding: 10px;
+    background: #FFFFFF;
+}
+.context-head{
+	height: 120px;
+	padding-top: 20px;
+	background: #FFFFFF;
+}
+.horizontal-line{
+	flex-grow: 1;	 /* Line takes up the remaining space */
+    height: 1px; /* Thickness of the line */
+    background-color: #aaa; /* Line color */
+}
+.context-head span{
+	display: flex;
+}
+.product-info{
+	font-size: 24px;
+	font-weight: 600;
+	margin-top: 10px;
+}
+.filter-info{
+	font-size: 18px;
+	font-weight: 400;
+	margin-bottom: 15px;
+}
+/* --------------------------end of context head------------------------- */
+
+/* --------------------------products container section------------------------- */
+.products-container{
+	display: grid;
+	background-color: #FFFFFF;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+}
+/* --------------------------end of products container------------------------- */
+
+/* --------------------------product card section------------------------- */
+.product-card{
+	background-color: #FFFFFF;
+    padding: 20px;
+	overflow: hidden; /* Prevent content from overflowing */
+}
+.product-card:hover{
+
+}
+.product-thumbnail{
+	width: 100%;
+	object-fit: cover;
+}
+.product-card a{
+	text-decoration: none;
+	display: block;
+	padding: 0px;
+	border: none;
+	transition: 0.3s ease;
+	color: black;
+}
+.product-card a:hover{
+	text-decoration: none;
+	padding: 10px;
+	border: 1px solid #daa520;
+	color: black;
+}
+.product-card a span{
+	display: flex;
+}
+.product_brand{
+	color: goldenrod;
+	font-weight: 700;
+}
+.product-title{
+	font-size: 17px;
+	font-weight: 500;
+}
+.product-title:hover{
+	text-decoration: underline;
+}
+.product-gender{
+	color: #999999;
+	font-weight: 700;
+	margin-top: 5px;
+}
+.rating{
+	color: #daa520;
+	margin-top: 5px;
+}
+.product-MRP{
+	gap: 5px;
+	font-size: 18px;
+	font-weight: 600;
+	margin-top: 5px;
+}
+.product-MRP::before {
+    content: "\20B9";
+}
+/* --------------------------end of product card------------------------- */
+
+/* --------------------------pagination bar section------------------------- */
+.pagination-bar-container{
+	height: 60px; /* Fixed height */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+/* --------------------------end of pagination bar------------------------- */

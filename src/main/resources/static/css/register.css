@@ -1,0 +1,12 @@
+section{
+    display: flex;
+    justify-content: center;
+}
+.registration-container{
+
+    width: 500px;
+    height: 500px;
+}
+.registration-container form{
+
+}

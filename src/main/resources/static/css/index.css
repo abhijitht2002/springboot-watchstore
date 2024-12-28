@@ -1,0 +1,365 @@
+*{
+	margin: 0;
+}
+body{}
+
+/*	banner
+    no designing needed
+	banner	*/
+
+/* ------------------------new arrivals section------------------------------------- */
+.new-arrivals-section{
+	padding: 50px;
+}
+.new-arrivals-title-container{
+	display: flex;
+	align-items: center;
+}
+.new-arrivals-title{
+	font-size: 24px;
+}
+.horizontal-line{
+    flex-grow: 1;	 /* Line takes up the remaining space */
+    height: 1px; /* Thickness of the line */
+    background-color: #daa520; /* Line color */
+}
+.new-arrivals-card-container{
+	display: flex;
+/*	padding: 20px;*/
+/*	background-color: crimson;*/
+	gap: 20px;
+}
+.new-arrivals-card{
+	width: 280px;
+/*	height: 400px;*/
+/*	background-color: grey;*/
+/*	padding: 20px;*/
+	gap: 15px;
+}
+.new-arrivals-card:hover{
+
+}
+.new-arrivals-card a{
+	text-decoration: none;
+	color: black;
+	display: block;
+}
+.new-arrivals-card a:hover{
+	text-decoration: none;
+	margin: 2px;
+	color: black;
+}
+.new-arrivals-card a span{
+	display: flex;
+}
+.new-arrival-image{
+	width: 100%;
+}
+.new-arrivals-product-brand{
+	color: #daa520;
+	margin-top: 5px;
+	font-weight: 700;
+}
+.new-arrivals-product-title{
+	font-size: 17px;
+	font-weight: 500;
+}
+.new-arrivals-product-title:hover{
+	text-decoration: underline;
+}
+.new-arrivals-product-gender{
+	color: #999999;
+	font-weight: 700;
+}
+.new-arrivals-product-rating{
+	color: #daa520;
+	margin-top: 5px;
+}
+.new-arrivals-product-MRP{
+	gap: 5px;
+	font-size: 18px;
+	font-weight: 600;
+	margin-top: 5px;
+}
+.new-arrivals-product-MRP:before{
+	content: "\20B9";
+}
+/* ------------------------end of new arrivals------------------------------------- */
+
+/* ------------------------category section------------------------------------- */
+.category-container{
+	display: flex;
+/*    justify-content: center;*/
+/*    gap: 15px;*/
+/*    height: 400px;*/
+/*    padding: 30px;*/
+    background-color: crimson;
+	background-color: #FDFAF5;
+	color: #FFFFFF;
+}
+.category_card_context{
+	display: flex;
+	background-color: #FFFFFF;
+/*	background-color: lightblue;*/
+	color: grey;
+	padding: 40px;
+}
+.vertical-text {
+    writing-mode: vertical-rl; /* Vertical text, right-to-left */
+/*    text-orientation: upright;	*/	 /* Keeps characters upright */
+	text-orientation: sideways; /* Characters flow in rotated direction */
+	direction: rtl; /* Right-to-left flow */
+    font-size: 64px;
+/*    border: 1px solid #ccc;	*/ /* Optional, just for visualization */
+/*    font-weight: 8rem;*/
+/*    transform: rotate(180deg); */ /* Rotate the entire text 180 degrees */
+  	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);	/*	shadow for the text 	*/
+}
+.category_card_container{
+/*	display: flex;*/
+/*	padding: 40px;*/
+/*	gap: 15px;*/
+/*	background-color: grey;*/
+}
+.category_card-wrapper{
+	padding: 20px;
+	gap: 15px;
+}
+.category_card{
+	position: relative;
+/*	width: 200px;*/
+/*	height: 500px;*/
+	overflow: hidden;
+	border-radius: 10px;
+	background-color: #ccc;
+/*	margin-left: 15px;*/
+}
+.category_card a{
+	display: block; /* Makes the entire card clickable */
+    text-decoration: none;
+}
+.category_image{
+	width: 100%;	/* Image covers the card width */
+    height: 100%;	/* Image covers the card height */
+    object-fit: cover;	/* Ensures the image fills the card */
+    border-radius: 10px;	/* Same border-radius as the card */
+    display: block;		/* Removes any inline spacing issues */
+}
+.category_title{
+	position: absolute; /* Position the title relative to the card */
+    bottom: 20px; /* Push the title to the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust position to exact center */
+    padding: 5px 10px; /* Padding around the text */
+    font-size: 1rem;
+/*    font-weight: bold;*/
+    text-align: center; /* Center the text */
+}
+/* ------------------------end of category------------------------------------- */
+
+
+/*--------------------------------best-seller section--------------------------------------------*/
+.bestseller-section{
+	padding: 50px;
+}
+.bestseller-title-container{
+	display: flex;
+	align-items: center;
+}
+.bestseller-title{
+	font-size: 24px;
+}
+.horizontal-line{
+    flex-grow: 1;	 /* Line takes up the remaining space */
+    height: 1px; /* Thickness of the line */
+    background-color: #daa520; /* Line color */
+}
+.bestseller-card-container{
+	display: flex;
+/*	padding: 20px;*/
+/*	background-color: crimson;*/
+	gap: 20px;
+}
+.bestseller-product-card{
+	width: 280px;
+/*	height: 400px;*/
+/*	background-color: grey;*/
+/*	padding: 20px;*/
+	gap: 15px;
+}
+.bestseller-product-card a{
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+.bestseller-product-card a:hover{
+	margin: 2px;
+	text-decoration: none;
+	color: black;
+}
+.bestseller-product-card a span{
+	display: flex;
+}
+.bestseller-product-image{
+	width: 100%;
+}
+.bestseller-product_brand{
+	color: #daa520;
+	font-weight: 700;
+	margin-top: 5px;
+}
+.bestseller-product-title{
+	font-size: 17px;
+	font-weight: 500;
+}
+.bestseller-product-title:hover{
+	text-decoration: underline;
+}
+.bestseller-product-gender{
+	color: #999999;
+	font-weight: 700;
+	margin-top: 5px;
+}
+.bestseller-product-rating{
+	color: #daa520;
+	margin-top: 5px;
+}
+.bestseller-product-MRP{
+	gap: 5px;
+	font-size: 18px;
+	font-weight: 600;
+	margin-top: 5px;
+}
+.bestseller-product-MRP:before{
+	content: "\20B9";
+}
+/*--------------------------------end of best-seller--------------------------------------------*/
+
+/* --------------------------brands list section------------------------- */
+.brand-section{
+	background-color: #FDFAF5;	/* cream color */
+	padding: 40px;	/* padding inside the section */
+}
+.brand-section-title-container{
+	display: flex;
+	align-items: center;
+}
+.brand-section-title{
+	font-size: 30px;
+}
+.brand-card-container{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+/*	grid-template-rows: repeat(3, 1fr);*/
+/*	background-color: lightcoral;*/
+/*	gap: 15px;*/
+/*	padding: 30px;*/
+}
+.brand-card{
+/*	background-color: grey;*/
+	padding: 30px;	/* padding inside the card */
+}
+.brand-card a{
+	display: block;
+/*	border: 1px solid #daa520;*/
+}
+.brand-image{
+	width: 100%;
+	height: 100%;
+	display: block;
+/*	border: 2px solid black;*/
+}
+/* --------------------------end of brands list------------------------- */
+
+/* --------------------------movement section------------------------- */
+.movement-section{
+	padding: 40px;
+}
+.movement-options-title-container{
+	display: flex;
+	align-items: center;
+}
+.movement-options-title-container span{
+	font-size: 30px;
+	margin-bottom: 5px;
+}
+.movement-options-container{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	gap: 15px;
+}
+.movement-mechanical{
+	grid-column: 1 / 3;
+	grid-row: 1 / 3;
+}
+.movement-automatic{
+	grid-column: 3 / 4;
+	grid-row: 1 / 2;
+}
+.movement-quartz{
+	grid-column: 4 / 5;
+	grid-row: 1 / 2;
+}
+.movement-chrono{
+	grid-column: 3 / 4;
+	grid-row: 2 / 3;
+}
+.movement-smart{
+	grid-column: 4 / 5;
+	grid-row: 2 / 3;
+}
+.movement-options-container img{
+	width: 100%;
+	height: 100%;
+}
+/* --------------------------end of movement------------------------- */
+
+/* --------------------------gallery section------------------------- */
+.gallery-title-container{
+	display: flex;
+	padding: 20px;
+/*	background-color: #FAFAFA;*/
+	justify-content: center;
+}
+.gallery-title-container span{
+	font-size: 34px;
+	font-weight: 600;
+}
+.gallery-container{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+/*	grid-template-rows: 1fr 1fr;*/
+}
+.quad1{
+
+}
+.quad1 img{
+	width: 100%;
+/*	height: 100%;*/
+}
+.quad2{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+}
+.quad2 img{
+	width: 100%;
+/*	height: 100%;*/
+}
+.quad3{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+}
+.quad3 img{
+	width: 100%;
+}
+.quad4{
+
+}
+.quad4 img{
+	width: 100%;
+	height: 100%;
+}
+/* --------------------------end of gallery------------------------- */

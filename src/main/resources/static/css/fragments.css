@@ -1,0 +1,27 @@
+/*	navbar	*/
+.navbar{}
+.navbar a{
+	font-size: 24px;
+}
+.navbar-brand{
+	margin: 20px;
+	font-weight: 800;
+}
+.navbar-nav a{
+	margin-left: 50px;
+	font-size: 18px;
+	font-style: italic;
+	font-weight: 400;
+}
+#navbarNav{
+	margin-left: 100px;
+}
+/*	navbar	*/
+
+/*	footer	*/
+.footer{
+    width: auto;
+    height: 400px;
+    background-color: #1B1B1B;
+}
+/*	footer	*/

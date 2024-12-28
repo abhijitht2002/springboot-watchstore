@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+}
+body{}
+/*	product section	*/
+.product-section{
+	padding: 50px;
+}
+.navi-gator{
+/*	display: flex;*/
+/*	justify-content: space-evenly;*/
+	margin-bottom: 20px;
+	font-size: 22px;
+}
+.product-container{
+	display: flex;
+/*	padding: 20px;*/
+/*	justify-content: center;*/
+	gap: 20px;
+}
+.image-box{
+/*	width: 500px;*/
+/*	height: 500px;*/
+	display: flex;
+	gap: 17px;
+}
+.image-box img{
+	width: 100%;
+	height: 100%;
+}
+.image_r-box{
+	display: flex;
+	flex-direction: column;
+	gap: 17px;
+}
+.image_r{
+	width: 100px;
+	height: 100px;
+	border: 1px solid goldenrod;
+}
+.image_m{
+	width: 450px;
+	height: 450px;
+	border: 1px solid goldenrod;
+}
+.info-container{
+/*	border: 1px solid brown;*/
+}
+.info-box{
+/*	width: 400px;*/
+	height: 340px;
+/*	border: 1px solid black;*/
+}
+.info-box span{
+	display: flex;
+/*	font-size: 24px;*/
+	padding: 5px;
+}
+.sp-brand{
+	font-size: 20px;
+}
+.sp-name{
+	font-size: 24px;
+	font-weight: 700;
+}
+.sp-price{
+	font-size: 24px;
+}
+.sp-operations form{
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.sp-operations .con1{
+	width: 100%;
+/*	height: 70px;*/
+}
+.sp-operations .con1 input{
+/*	width: 100%;*/
+/*	height: 50px;*/
+}
+.sp-operations .con2{
+	display: flex;
+	width: 100%;
+	height: 50px;
+	gap: 10px;
+}
+.sp-operations button{
+	width: 100%;
+	height: 100%;
+	font-weight: 500;
+}
+.add-to-cart{
+	border: 1px solid #000000;
+	background-color: #FFFFFF;
+	transition: 0.2s ease;
+}
+.add-to-cart:hover{
+	border: 1px solid #daa520;
+	background-color: #FDFAF5;
+}
+.buy-now{
+	border: none;
+	background-color: #daa520;
+	transition: background-color 0.2s ease;
+}
+.buy-now:hover{
+	background-color: #b8860b;
+}
+.product-desc{
+
+}
+.heading-s{
+    display: block;
+	font-size: 20px;
+	font-weight: 600;
+	margin-top: 15px;
+}
+.content-s{
+
+}
+.product-desc span{
+	display: flex;
+}
+.product-spec{
+
+}
+.product-spec span{
+	/*  display: flex;  */
+}
+.product-spec-list{
+	list-style: none;
+	padding: 0px;
+}
+.review-cont{
+
+}
+.review-cont-head{
+	display: flex;
+	justify-content: center;
+}
+.review-ratings{
+	display: flex;
+	justify-content: center;
+	font-size: 40px;
+	color: #daa520;
+}
+/*	end of product	*/
