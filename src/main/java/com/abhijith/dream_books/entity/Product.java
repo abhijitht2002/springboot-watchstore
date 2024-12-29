@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
-public class product {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,12 +41,12 @@ public class product {
     private LocalDateTime created_at;
 
 //
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "Product", cascade = CascadeType.ALL)
     private List<productImages> imagesList = new ArrayList<>();
 
-    public product(){}
+    public Product(){}
 
-    public product(String product_name, String product_brand, String product_gender, String product_thumbnail, String product_description, String product_specifications, BigDecimal product_price, LocalDateTime created_at) {
+    public Product(String product_name, String product_brand, String product_gender, String product_thumbnail, String product_description, String product_specifications, BigDecimal product_price, LocalDateTime created_at) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.product_brand = product_brand;
@@ -140,7 +140,7 @@ public class product {
 
     @Override
     public String toString() {
-        return "product{" +
+        return "Product{" +
                 "product_id=" + product_id +
                 ", product_name='" + product_name + '\'' +
                 ", product_brand='" + product_brand + '\'' +

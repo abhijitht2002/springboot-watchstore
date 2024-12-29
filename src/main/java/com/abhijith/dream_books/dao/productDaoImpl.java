@@ -1,7 +1,7 @@
 package com.abhijith.dream_books.dao;
 
 
-import com.abhijith.dream_books.entity.product;
+import com.abhijith.dream_books.entity.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -20,29 +20,29 @@ public class productDaoImpl implements productDAO{
 
     @Override
     @Transactional
-    public void save(product theproduct) {
+    public void save(Product theproduct) {
         theEntityManager.persist(theproduct);
     }
 
     @Override
-    public List<product> findAll() {
+    public List<Product> findAll() {
 
-        TypedQuery<product> theQuery = theEntityManager.createQuery("FROM product ORDER BY product_id", product.class);
+        TypedQuery<Product> theQuery = theEntityManager.createQuery("FROM Product ORDER BY product_id", Product.class);
 
         return theQuery.getResultList();
     }
 
     @Override
-    public List<product> findByGender(String gender) {
+    public List<Product> findByGender(String gender) {
 
-        TypedQuery<product> theQuery = theEntityManager.createQuery("FROM product WHERE product_gender = :gender", product.class);
+        TypedQuery<Product> theQuery = theEntityManager.createQuery("FROM Product WHERE product_gender = :gender", Product.class);
         theQuery.setParameter("gender", gender);    /* set the gender parameter in the query */
         return theQuery.getResultList();
     }
 
     @Override
-    public product findById(Long id) {
+    public Product findById(Long id) {
 
-        return theEntityManager.find(product.class, id);
+        return theEntityManager.find(Product.class, id);
     }
 }

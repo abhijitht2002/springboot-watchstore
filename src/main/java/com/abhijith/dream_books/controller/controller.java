@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 public class controller {
@@ -31,7 +30,7 @@ public class controller {
     private CartDAO cartDAO;
     private UserDAO theUserDAO;
     private productImages theProductImages;
-    private product theProduct;
+    private Product theProduct;
     private UserService theUserService;
 
     @Autowired
@@ -60,9 +59,9 @@ public class controller {
 
         System.out.println(gender);
 
-//        List<product> theProducts;
+//        List<Product> theProducts;
 
-        List<product> theProducts = new ArrayList<>();
+        List<Product> theProducts = new ArrayList<>();
 
         if(gender == null){
             theProducts = theProductDAO.findAll();
@@ -85,9 +84,9 @@ public class controller {
 
         System.out.println(gender);
 
-//        List<product> theProducts;
+//        List<Product> theProducts;
 
-        List<product> theProducts = new ArrayList<>();
+        List<Product> theProducts = new ArrayList<>();
 
         if(gender == null){
             theProducts = theProductDAO.findAll();
@@ -102,13 +101,13 @@ public class controller {
         return "shopping-page";
     }
 
-    @GetMapping("/product")
+    @GetMapping("/Product")
     public String showProduct(
             @RequestParam("id") Long id,
             Model theModel
     ) throws JsonProcessingException {
 
-        product theProd = theProductDAO.findById(id);
+        Product theProd = theProductDAO.findById(id);
 
         //  Parse specifications JSON into Map
         ObjectMapper mapper = new ObjectMapper();
@@ -135,12 +134,12 @@ public class controller {
                 .append(strapCol + " " + strapMaterial + " straps ");
 
 //        System.out.println(theProduct);
-//        System.out.println("product with images:" + theProduct.getImagesList().stream().map(productImages::getImage_url).collect(Collectors.toList()));
-        theModel.addAttribute("product", theProd);
+//        System.out.println("Product with images:" + theProduct.getImagesList().stream().map(productImages::getImage_url).collect(Collectors.toList()));
+        theModel.addAttribute("Product", theProd);
         theModel.addAttribute("Eximages", theProd.getImagesList());
         theModel.addAttribute("dydetails", details);
         theModel.addAttribute("prodSpec", specs);
-        return "product-page";
+        return "Product-page";
     }
 
     @GetMapping("/User-dashboard")
@@ -201,7 +200,7 @@ public class controller {
             //  if user not null then find User(entity) by username
             User theUser = theUserDAO.findByUsername(username);
 
-            product theProduct = theProductDAO.findById(productId);
+            Product theProduct = theProductDAO.findById(productId);
 
             System.out.println("productID: " + productId);
             System.out.println("quantity: " + quantity);
@@ -213,7 +212,7 @@ public class controller {
 //            return "redirect:/shop";
         }
 
-        return "redirect:/product?id=" + productId;
+        return "redirect:/Product?id=" + productId;
     }
 
     @GetMapping("/register")

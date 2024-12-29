@@ -2,8 +2,8 @@ package com.abhijith.dream_books;
 
 import com.abhijith.dream_books.dao.categoryDao;
 import com.abhijith.dream_books.dao.productDAO;
+import com.abhijith.dream_books.entity.Product;
 import com.abhijith.dream_books.entity.category;
-import com.abhijith.dream_books.entity.product;
 import com.abhijith.dream_books.entity.productImages;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -38,7 +38,7 @@ public class WatchWorldMainApplication {
 		//	conversion required double to BigDecimal
 		BigDecimal newPrice = new BigDecimal("18401.00");
 		//	inserting data
-		product theProduct = new product(
+		Product theProduct = new Product(
 				"Maritime Pro Lateen Sail Chronograph Watch",
 				"TITAN",
 				"men",
@@ -69,7 +69,7 @@ public class WatchWorldMainApplication {
 		//	conversion required double to BigDecimal
 		BigDecimal newPrice = new BigDecimal("18401.00");
 		//	inserting data
-		product theProduct = new product(
+		Product theProduct = new Product(
 				"Maritime Pro Lateen Sail Chronograph Watch",
 				"TITAN",
 				"men",

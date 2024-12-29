@@ -13,14 +13,14 @@ public class productImages {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private product product;
+    private Product product;
 
     @Column(name = "image_url")
     private String image_url;
 
     public  productImages(){}
 
-    public productImages(product Product, String image_url) {
+    public productImages(Product Product, String image_url) {
         this.product = Product;
         this.image_url = image_url;
     }
@@ -33,11 +33,11 @@ public class productImages {
         this.image_id = image_id;
     }
 
-    public product getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
