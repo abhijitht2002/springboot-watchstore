@@ -135,11 +135,11 @@ public class controller {
 
 //        System.out.println(theProduct);
 //        System.out.println("Product with images:" + theProduct.getImagesList().stream().map(productImages::getImage_url).collect(Collectors.toList()));
-        theModel.addAttribute("Product", theProd);
+        theModel.addAttribute("product", theProd);
         theModel.addAttribute("Eximages", theProd.getImagesList());
         theModel.addAttribute("dydetails", details);
         theModel.addAttribute("prodSpec", specs);
-        return "Product-page";
+        return "product-page";
     }
 
     @GetMapping("/User-dashboard")
@@ -212,7 +212,7 @@ public class controller {
 //            return "redirect:/shop";
         }
 
-        return "redirect:/Product?id=" + productId;
+        return "redirect:/product?id=" + productId;
     }
 
     @GetMapping("/register")
