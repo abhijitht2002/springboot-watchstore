@@ -101,7 +101,7 @@ public class controller {
         return "shopping-page";
     }
 
-    @GetMapping("/Product")
+    @GetMapping("/product")
     public String showProduct(
             @RequestParam("id") Long id,
             Model theModel

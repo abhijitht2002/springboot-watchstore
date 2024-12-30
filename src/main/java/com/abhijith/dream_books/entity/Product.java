@@ -41,7 +41,7 @@ public class Product {
     private LocalDateTime created_at;
 
 //
-    @OneToMany(mappedBy = "Product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<productImages> imagesList = new ArrayList<>();
 
     public Product(){}
