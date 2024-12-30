@@ -25,7 +25,7 @@
 
 <!-- ---------------------------	Product section		---------------------------- -->
 <section class="product-section">
-    <div class="product-container" th:each="tempProd:${product}">
+    <div class="product-container">
         <div class="image-box">
             <div class="image_r-box" >
                 <div class="image_r" th:each="tempimg: ${Eximages}">
@@ -33,19 +33,19 @@
                 </div>
             </div>
             <div class="image_m">
-                <img th:src="${tempProd.product_thumbnail}">
+                <img th:src="${product.product_thumbnail}">
             </div>
         </div>
         <div class="info-container">
             <div class="info-box">
-                <span class="sp-brand" th:text="${tempProd.product_brand}"></span>
-                <span class="sp-name"  th:text="${tempProd.product_name}"></span>
-                <span class="sp-price"  th:text="${tempProd.product_gender}"></span>
-                <span class="sp-price"  th:text="${tempProd.product_price}"></span>
+                <span class="sp-brand" th:text="${product.product_brand}"></span>
+                <span class="sp-name"  th:text="${product.product_name}"></span>
+                <span class="sp-price"  th:text="${product.product_gender}"></span>
+                <span class="sp-price"  th:text="${product.product_price}"></span>
                 <span th:text="${dydetails}"></span>
             </div>
             <div class="sp-operations">
-                <form th:action="@{/cart/add(id=${tempProd.product_id})}" method="post">
+                <form th:action="@{/cart/add(id=${product.product_id})}" method="post">
                     <div class="con1">
                         <label>select quantity: </label>
                         <input type="number" id="quantity" th:name="quantity" min="1" max="10" value="1">

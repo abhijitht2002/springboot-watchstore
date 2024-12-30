@@ -1,0 +1,150 @@
+.cart-head{
+	font-size: 32px;
+	background-color: #FDFAF5;
+/*	height: 200px;*/
+	padding: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.cart-container{
+	display: flex;
+	justify-content: space-between;
+	padding-left: 30px;
+	padding-right: 30px;
+	gap: 20px;
+}
+
+.cart-products-container{
+/*	width: 900px;*/
+/*	flex: 1;	*/	/* Invoice takes up the remaining space */
+/*	flex: 2;	*/	/* Product table takes up twice as much space */
+	flex: 3;
+}
+.table{
+/*	width: 100%;*/
+    border-collapse: separate; /* Ensures spacing works */
+    border-spacing: 10px;
+}
+.table thead tr th{
+	border: none;
+}
+.table tbody tr i{
+	font-size: 24px;
+	color: #ccc;
+}
+.table tbody tr i:hover{
+	color: #FF0000;
+}
+.table tr .quantity-field{
+	text-align: center; /* Aligns content horizontally */
+    vertical-align: middle;
+}
+.cart-product{
+/*	width: 200px;*/
+/*	height: 50px;*/
+	display: flex;
+	align-items: flex-start; /* Align items at the top */
+    gap: 10px; /* Add space between the image and text */
+}
+.cart-product img{
+	width: 200px;
+	height: 200px;
+}
+.product-info {
+    display: flex;
+    flex-direction: column; /* Stack title and brand vertically */
+    justify-content: center;
+}
+.product-title a{
+	color: #000000;
+}
+.product-title a:hover{
+	color: #000000;
+}
+.product-title {
+    font-weight: bold; /* Make title stand out */
+    margin-bottom: 5px; /* Space between title and brand */
+}
+.product-brand {
+    font-size: 0.9em; /* Slightly smaller text for brand */
+    color: #555; /* Muted color for brand */
+}
+.quantity-selector {
+    display: flex;
+    font-size: 18px;
+    gap: 8px;
+    border: 1px solid black;
+}
+.quantity-selector label{
+/*	flex: 1;*/
+	align-items: center;
+	justify-content: center;
+}
+.quantity-selector button{
+	border: none;
+	height: auto;
+	flex: 1;
+}
+.quantity-selector button:hover{
+	cursor: pointer;
+}
+
+.invoice-container{
+	position: sticky;
+	display: flex;
+	flex-direction: column;
+/*	width: 300px;*/
+	flex: 1;	/* Invoice takes up the remaining space */
+	height: 400px;
+/*	background-color: cyan;*/
+/*	position: sticky;*/
+    top: 20px;  /* Adjust the distance from the top as needed */
+    padding: 15px;
+/*    z-index: 100;*/
+}
+.price-row{
+	display: flex;
+	justify-content: space-between;
+}
+.price-row span:first-child{
+	text-align: left;
+}
+.price-row span:last-child{
+	text-align: right;
+}
+.invoice-container button{
+	height: 40px;
+	border: none;
+	background-color: #daa520;
+	transition: background-color 0.2s ease;
+}
+.invoice-container button:hover{
+	cursor: pointer;
+	background-color: #b8860b;
+}
+.invoice-container button:focus, .invoice-container button:active{
+	border: none;
+	outline: none;
+}
+
+/*-----------ERROR----------*/
+.cart-container-error{
+	padding: 50px;
+}
+.cart-error{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+.cart-error img{
+	width: 300px;
+	height: 300px;
+}
+.cart-error span{
+	font-size: 24px;
+}

@@ -7,6 +7,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -44,5 +45,13 @@ public class productDaoImpl implements productDAO{
     public Product findById(Long id) {
 
         return theEntityManager.find(Product.class, id);
+    }
+
+    @Override
+    public BigDecimal findPriceById(Long id) {
+
+        Product theProduct = findById(id);
+
+        return theProduct.getProduct_price();
     }
 }

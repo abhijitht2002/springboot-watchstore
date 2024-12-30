@@ -2,6 +2,7 @@ package com.abhijith.dream_books.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,14 +31,18 @@ public class Cart {
     @Column(name = "updated_at")
     private LocalDateTime updated_at;
 
+    @Column(name = "total_price")
+    private BigDecimal total_price;
+
     public Cart(){}
 
-    public Cart(User theUser, Product theProduct, int quantity, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Cart(User theUser, Product theProduct, int quantity, LocalDateTime created_at, LocalDateTime updated_at, BigDecimal total_price) {
         this.theUser = theUser;
         this.theProduct = theProduct;
         this.quantity = quantity;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.total_price = total_price;
     }
 
     public int getId() {
@@ -88,6 +93,14 @@ public class Cart {
         this.updated_at = updated_at;
     }
 
+    public BigDecimal getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(BigDecimal total_price) {
+        this.total_price = total_price;
+    }
+
     @Override
     public String toString() {
         return "Cart{" +
@@ -97,6 +110,7 @@ public class Cart {
                 ", quantity=" + quantity +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
+                ", total_price=" + total_price +
                 '}';
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class controller {
             @RequestParam(value = "gender", required = false)String gender
     ) {
 
-        System.out.println(gender);
+//        System.out.println(gender);
 
 //        List<Product> theProducts;
 
@@ -68,8 +69,8 @@ public class controller {
         }else if(gender.equals("men")){
             theProducts = theProductDAO.findByGender(gender);
         }
-        System.out.println(theProducts);
-        System.out.println(theProducts.stream().count());
+//        System.out.println(theProducts);
+//        System.out.println(theProducts.stream().count());
         Long count = theProducts.stream().count();
         theModel.addAttribute("products", theProducts);
         theModel.addAttribute("counts", count);
@@ -153,6 +154,20 @@ public class controller {
         return "wishlist-page";
     }
 
+    @GetMapping("/wishlist/add")
+    public String addToWishlistPage(@RequestParam Long id,
+                                    @RequestParam String sourcePage,
+                                    Model theModel){
+        System.out.println(id);
+        System.out.println(sourcePage);
+
+        if("shop".equals(sourcePage)){
+
+            return "redirect:/shop";
+        }
+        return "redirect:/shop";
+    }
+
     @GetMapping("/cart-page")
     public String goToCartPage(Model theModel){
 
@@ -169,11 +184,11 @@ public class controller {
 
                 System.out.println(theCartItems);
                 theModel.addAttribute("cartItems", theCartItems);
-                return "/cart-page";
+                return "cart-page";
             }else {
 
                 System.out.println("no items found");
-                return "/cart-page";
+                return "cart-page";
             }
 
         }else {
@@ -192,6 +207,7 @@ public class controller {
         System.out.println(action);
         if (action.equals("add-to-cart")){
             String username = theUserService.getAuthenticatedUsername();
+
             //  check if username is null
             if(username == null){
 
@@ -202,10 +218,17 @@ public class controller {
 
             Product theProduct = theProductDAO.findById(productId);
 
+            BigDecimal price = theProductDAO.findPriceById(productId);
+            BigDecimal theQuantity = new BigDecimal(quantity);
+            BigDecimal grandtotal = price.multiply(theQuantity);
+
             System.out.println("productID: " + productId);
             System.out.println("quantity: " + quantity);
+            System.out.println("big decimal quantity: " + theQuantity);
+            System.out.println("price: " + price);
+            System.out.println("total: " + grandtotal);
 
-            Cart thCart = new Cart( theUser, theProduct, quantity, LocalDateTime.now(), LocalDateTime.now());
+            Cart thCart = new Cart(theUser, theProduct, quantity, LocalDateTime.now(), LocalDateTime.now(), grandtotal);
 
             cartDAO.save(thCart);
 

@@ -318,10 +318,10 @@
         <div class="products-container" id="products-container">
 
             <div class="product-card" th:each="tempProd : ${products}">
-                <a th:href="@{/product(id=${tempProd.product_id})}">
+                <a th:href="@{/product(id=${tempProd.product_id})}" class="product-link">
 <!--                <a th:href="/Product?id=${tempProd.product_id}">-->
-<!--                    <img  class="Product-thumbnail" th:src="${tempProd.product_thumbnail}">-->
-                    <img  class="product-thumbnail" th:src="'/'+${tempProd.product_thumbnail}">
+                    <img  class="product-thumbnail" th:src="${tempProd.product_thumbnail}">
+<!--                    <img  class="product-thumbnail" th:src="'/'+${tempProd.product_thumbnail}">-->
 <!--                    <img  class="Product-thumbnail" th:src="@{${tempProd.product_thumbnail}}">-->
                     <h6 class="product_brand" th:text="${tempProd.product_brand}"></h6>
                     <span class="product-title" th:text="${tempProd.product_name}"></span>
@@ -335,9 +335,15 @@
                         </span>
                     <span class="product-MRP" th:text="${tempProd.product_price}"></span>
                 </a>
-            </div>
 
-            <!-- the script will make 40 cards -->
+                <!-- Love Icon (Wishlist) -->
+                <a th:href="@{/wishlist/add(id=${tempProd.product_id}, sourcePage='shop')}" class="add-to-wishlist">
+<!--                <a href="/wishlist/add?id=${tempProd.product_id}&sourcePage=shop" class="add-to-wishlist">-->
+                    <div class="wishlist-icon">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </a>
+            </div>
         </div>
 
         <div class="pagination-bar-container">

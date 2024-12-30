@@ -94,18 +94,20 @@ body{
 
 /* --------------------------product card section------------------------- */
 .product-card{
+    position: relative;
 	background-color: #FFFFFF;
     padding: 20px;
 	overflow: hidden; /* Prevent content from overflowing */
+	transition: 0.3s ease;
 }
 .product-card:hover{
-
+    padding: 10px
 }
 .product-thumbnail{
 	width: 100%;
 	object-fit: cover;
 }
-.product-card a{
+.product-link{
 	text-decoration: none;
 	display: block;
 	padding: 0px;
@@ -113,13 +115,11 @@ body{
 	transition: 0.3s ease;
 	color: black;
 }
-.product-card a:hover{
+.product-link:hover{
 	text-decoration: none;
-	padding: 10px;
-	border: 1px solid #daa520;
 	color: black;
 }
-.product-card a span{
+.product-link span{
 	display: flex;
 }
 .product_brand{
@@ -150,6 +150,24 @@ body{
 }
 .product-MRP::before {
     content: "\20B9";
+}
+.wishlist-icon{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.wishlist-icon:hover{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 /* --------------------------end of product card------------------------- */
 
