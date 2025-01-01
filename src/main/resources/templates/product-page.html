@@ -45,7 +45,7 @@
                 <span th:text="${dydetails}"></span>
             </div>
             <div class="sp-operations">
-                <form th:action="@{/cart/add(id=${product.product_id})}" method="post">
+                <form th:action="@{/cart/add(id=${product.product_id}, sourcePage='product')}" method="post">
                     <div class="con1">
                         <label>select quantity: </label>
                         <input type="number" id="quantity" th:name="quantity" min="1" max="10" value="1">

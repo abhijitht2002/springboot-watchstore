@@ -1,9 +1,6 @@
 package com.abhijith.dream_books.controller;
 
-import com.abhijith.dream_books.dao.CartDAO;
-import com.abhijith.dream_books.dao.UserDAO;
-import com.abhijith.dream_books.dao.categoryDao;
-import com.abhijith.dream_books.dao.productDAO;
+import com.abhijith.dream_books.dao.*;
 import com.abhijith.dream_books.entity.*;
 import com.abhijith.dream_books.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -33,14 +30,17 @@ public class controller {
     private productImages theProductImages;
     private Product theProduct;
     private UserService theUserService;
+    private Wishlist wishlist;
+    private WishlistDAO theWishlistDAO;
 
     @Autowired
-    public controller(categoryDao theCategoryDao, productDAO theProductDAO, CartDAO theCartDAO, UserDAO theUserDAO, UserService theUserService) {
+    public controller(categoryDao theCategoryDao, productDAO theProductDAO, CartDAO theCartDAO, UserDAO theUserDAO, UserService theUserService, WishlistDAO theWishlistDAO) {
         this.theCategoryDao = theCategoryDao;
         this.theProductDAO = theProductDAO;
         this.cartDAO = theCartDAO;
         this.theUserDAO = theUserDAO;
         this.theUserService = theUserService;
+        this.theWishlistDAO = theWishlistDAO;
     }
 
     @GetMapping("/")
@@ -149,8 +149,30 @@ public class controller {
     }
 
     @GetMapping("/wishlist-page")
-    public String goToWishlistPage(){
-        System.out.println("hello world");
+    public String goToWishlistPage(Model theModel){
+
+        // getting the global attribute username and casting it to string
+        String username = (String) theModel.getAttribute("username");
+        //  go back to login if username is null
+        if(username == null){
+
+            return "redirect:/login";
+        }
+        // getting the user details with username
+        User theUser = theUserDAO.findByUsername(username);
+        //  retrieve list of wishlist item with the user details
+        List<Wishlist> wishlistItems = theWishlistDAO.findWishlistItemOfUser(theUser);
+        // check if the list wishlistItems is not empty and null
+        if(wishlistItems != null && !wishlistItems.isEmpty()){
+
+            //  passing in the retrieved wishlist items to attribute wishlistItems
+            theModel.addAttribute("wishlistItems", wishlistItems);
+        }else {
+
+            System.out.println("no items found");
+        }
+
+        //  return to wishlist page
         return "wishlist-page";
     }
 
@@ -158,14 +180,50 @@ public class controller {
     public String addToWishlistPage(@RequestParam Long id,
                                     @RequestParam String sourcePage,
                                     Model theModel){
-        System.out.println(id);
-        System.out.println(sourcePage);
+
+        String username = (String) theModel.getAttribute("username");
+        User theUser = theUserDAO.findByUsername(username);
+
+        if(username != null){
+
+            //  find product details by id
+            Product theProduct = theProductDAO.findById(id);
+            // Check if the item is already in the wishlist
+            List<Wishlist> theWishlistExists = theWishlistDAO.findItemByUserAndProduct(theUser, theProduct);
+            if(theWishlistExists == null || theWishlistExists.isEmpty()){
+
+                Wishlist newWishlistItem = new Wishlist(theUser, theProduct, LocalDateTime.now());
+                theWishlistDAO.save(newWishlistItem);
+                System.out.println("item successfully added to wishlist");
+            }else {
+
+                System.out.println("item already exists");
+            }
+
+        }else {
+
+            return "redirect:/login";
+        }
 
         if("shop".equals(sourcePage)){
 
             return "redirect:/shop";
+        } else if ("home".equals(sourcePage)) {
+
+            return "redirect:/";
         }
-        return "redirect:/shop";
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/wishlist/remove")
+    public String removeWishlistItem(@RequestParam Long id){
+
+        theWishlistDAO.delete(id);
+
+        System.out.println("item successfully deleted!");
+
+        return "redirect:/wishlist-page";
     }
 
     @GetMapping("/cart-page")
@@ -182,7 +240,6 @@ public class controller {
             //  check if the cart items are null or empty mostly the list<> retrieves empty list as - [] which must be definitely dealt with .isEmpty()
             if(theCartItems != null && !theCartItems.isEmpty()){
 
-                System.out.println(theCartItems);
                 theModel.addAttribute("cartItems", theCartItems);
                 return "cart-page";
             }else {
@@ -202,7 +259,8 @@ public class controller {
     public String addToCart(@RequestParam("id") Long productId,
                             @RequestParam int quantity,
                             Model theModel,
-                            @RequestParam String action){
+                            @RequestParam String action,
+                            @RequestParam String sourcePage){
 
         System.out.println(action);
         if (action.equals("add-to-cart")){
@@ -233,9 +291,24 @@ public class controller {
             cartDAO.save(thCart);
 
 //            return "redirect:/shop";
+        }else
+        if(action.equals("buy-now")){
+
+            System.out.println("if buy-now button is clicked then redirect to /buy-now here");
         }
 
-        return "redirect:/product?id=" + productId;
+        if(sourcePage.equals("product")){
+
+            return "redirect:/product?id=" + productId;
+        }else
+        if(sourcePage.equals("wishlist")) {
+
+            return "redirect:/wishlist-page";
+        }else {
+
+            return "redirect:/";
+        }
+
     }
 
     @GetMapping("/register")
@@ -278,5 +351,11 @@ public class controller {
 //            System.out.println(theUser);
 //            return "login";
 //        }
+//    }
+
+//    @GetMapping("/logout")
+//    public String showLogoutPage(){
+//
+//        return "logout";
 //    }
 }

@@ -2,20 +2,88 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Watch World</title>
+<!--    <title>Watch World</title>-->
 
-    <link rel="stylesheet" type="text/css" href="/css/swiper-bundle.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/homepage.css">
+    <!--  css area  -->
+    <link rel="stylesheet" type="text/css" href="/css/fragments.css">
+    <link rel="stylesheet" type="text/css" href="/css/wishlist-page.css">
+    <!--  end of css  -->
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- bootstrap -->
+    <!-- for a special sliding effect for banner bootstrap 4.0 is used ... can be changed any time -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- end of bootstrap -->
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- end of fontawesome -->
 </head>
 <body>
 <!--navbar-->
     <nav th:replace="fragments/navbar :: navbar"></nav>
 <!--navbar-->
 
+<!--    wishlist    -->
+<section class="wishlist-head">
+    <span><i class="fas fa-heart"></i></span>
+    <span>MY WISHLIST</span>
+</section>
+
+<section class="wishlist-container" th:if="${wishlistItems != null and !wishlistItems.isEmpty()}">
+    <div class="wishlist-products-container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">PRODUCT</th>
+                    <th scope="col">PRICE</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tempItem : ${wishlistItems}">
+                    <!-- <th scope="row">del</th> -->
+                    <td><a th:href="@{/wishlist/remove(id=${tempItem.id})}"><i class="fas fa-trash"></i></a></td>
+                    <td>
+                        <div class="wishlist-product">
+                            <img th:src="${tempItem.product.product_thumbnail}">
+                            <div class="product-info">
+                                <span class="product-title"><a href="#" th:text="${tempItem.product.product_name}"></a></span>
+                                <span class="product-brand" th:text="${tempItem.product.product_brand}"></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td th:text="${tempItem.product.product_price}">345</td>
+                    <td>
+                        <form th:action="@{/cart/add(id=${tempItem.product.product_id}, quantity=1, sourcePage='wishlist')}" method="post">
+                            <div class="operations">
+                                <button class="add-to-cart" type="submit" name="action" value="add-to-cart">Add to cart</button>
+                                <button class="buy-now" type="submit" name="action" value="buy-now">Buy now</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+    </div>
+
+</section>
+<!--    end of wishlist -->
+<!--    in case wishlist is empty   -->
+<section class="wishlist-container-error" th:if="${wishlistItems == null or wishlistItems.isEmpty()}">
+    <div class="wishlist-error">
+        <img src="uploads/icons/empty-cart.png">
+        <span>Wishlist is Empty!</span>
+        <a href="/shop">Continue Shopping</a>
+    </div>
+</section>
+<!--    end of wishlist empty   -->
+
+<!--    footer  -->
+<footer th:replace="fragments/footer :: footer"></footer>
+<!--    end of footer   -->
 </body>
 </html>

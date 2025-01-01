@@ -24,6 +24,8 @@ public class Wishlist {
     @Column(name = "created_at")
     private LocalDateTime created_at;
 
+    public Wishlist(){}
+
     public Wishlist(User user, Product product, LocalDateTime created_at) {
         this.user = user;
         this.product = product;

@@ -1,0 +1,119 @@
+.wishlist-head{
+	font-size: 32px;
+	background-color: #FDFAF5;
+/*	height: 200px;*/
+	padding: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.wishlist-container{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.wishlist-products-container{
+
+}
+.table{
+/*	width: 100%;*/
+    border-collapse: separate; /* Ensures spacing works */
+    border-spacing: 10px;
+}
+.table thead tr th{
+	border: none;
+}
+.table tbody tr i{
+	font-size: 24px;
+	color: #ccc;
+}
+.table tbody tr i:hover{
+	color: #FF0000;
+}
+.table tr .quantity-field{
+	text-align: center; /* Aligns content horizontally */
+    vertical-align: middle;
+}
+.wishlist-product{
+/*	width: 200px;*/
+/*	height: 50px;*/
+	display: flex;
+	align-items: flex-start; /* Align items at the top */
+    gap: 10px; /* Add space between the image and text */
+}
+.wishlist-product img{
+	width: 200px;
+	height: 200px;
+}
+.product-info {
+    display: flex;
+    flex-direction: column; /* Stack title and brand vertically */
+    justify-content: center;
+}
+.product-title {
+    font-weight: bold; /* Make title stand out */
+    margin-bottom: 5px; /* Space between title and brand */
+}
+.product-title a{
+	color: #000000;
+}
+.product-title a:hover{
+	color: #000000;
+}
+.product-brand {
+    font-size: 0.9em; /* Slightly smaller text for brand */
+    color: #555; /* Muted color for brand */
+}
+.operations{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.add-to-cart{
+	border: 1px solid #000000;
+	background-color: #FFFFFF;
+	transition: 0.2s ease;
+}
+.add-to-cart:hover{
+	border: 1px solid #daa520;
+	background-color: #FDFAF5;
+	cursor: pointer;
+}
+.add-to-cart:focus, .add-to-cart:active{
+	border: none;
+	outline: none;
+}
+.buy-now{
+	border: none;
+	background-color: #daa520;
+	transition: background-color 0.2s ease;
+}
+.buy-now:hover{
+	background-color: #b8860b;
+	cursor: pointer;
+}
+.buy-now:focus, .buy-now:active{
+	border: none;
+	outline: none;
+}
+
+/*-----------ERROR----------*/
+.wishlist-container-error{
+	padding: 50px;
+}
+.wishlist-error{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+.wishlist-error img{
+	width: 300px;
+	height: 300px;
+}
+.wishlist-error span{
+	font-size: 24px;
+}
