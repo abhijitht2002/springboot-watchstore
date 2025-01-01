@@ -252,7 +252,6 @@ public class controller {
 
             return "redirect:/login";
         }
-
     }
 
     @PostMapping("/cart/add")
@@ -280,12 +279,6 @@ public class controller {
             BigDecimal theQuantity = new BigDecimal(quantity);
             BigDecimal grandtotal = price.multiply(theQuantity);
 
-            System.out.println("productID: " + productId);
-            System.out.println("quantity: " + quantity);
-            System.out.println("big decimal quantity: " + theQuantity);
-            System.out.println("price: " + price);
-            System.out.println("total: " + grandtotal);
-
             Cart thCart = new Cart(theUser, theProduct, quantity, LocalDateTime.now(), LocalDateTime.now(), grandtotal);
 
             cartDAO.save(thCart);
@@ -308,7 +301,41 @@ public class controller {
 
             return "redirect:/";
         }
+    }
 
+    @PostMapping("/cart/update")
+    public String updateCartItem(@RequestParam String action,
+                                 @RequestParam Long id){
+
+        Cart theCartItem = cartDAO.findById(id);
+
+        int Quantity = theCartItem.getQuantity();
+        System.out.println("qty: " + Quantity);
+
+        int newQuantity = 0;
+
+        if(action.equals("increment")){
+
+            newQuantity = Quantity + 1;
+        }else if(action.equals("decrement")){
+
+            newQuantity = Quantity - 1;
+        }
+
+        cartDAO.updateCartItem(id, newQuantity);
+        System.out.println("newQty: " + newQuantity);
+
+        return "redirect:/cart-page";
+    }
+
+    @GetMapping("/cart/remove")
+    public String removeCartItem(@RequestParam Long id){
+
+        cartDAO.delete(id);
+
+        System.out.println("item removed successfully!");
+
+        return "redirect:/cart-page";
     }
 
     @GetMapping("/register")

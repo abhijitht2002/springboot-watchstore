@@ -34,7 +34,6 @@
 
 <section class="cart-container" th:if="${cartItems != null and !cartItems.isEmpty()}">
     <div class="cart-products-container">
-        <form action="" method="post">
             <table class="table">
                 <thead>
                 <tr>
@@ -48,7 +47,7 @@
                 <tbody>
                 <tr th:each="tempCartItem : ${cartItems}">
                     <!-- <th scope="row">del</th> -->
-                    <td><a href="#"><i class="fas fa-trash"></i></a></td>
+                    <td><a th:href="@{/cart/remove(id=${tempCartItem.id})}"><i class="fas fa-trash"></i></a></td>
                     <td>
                         <div class="cart-product">
                             <img th:src="${tempCartItem.theProduct.product_thumbnail}">
@@ -60,17 +59,19 @@
                     </td>
                     <td th:text="${tempCartItem.theProduct.product_price}">345</td>
                     <td class="quantity-field">
-                        <div class="quantity-selector">
-                            <button type="submit" class="decrement">-</button>
-                            <label th:text="${tempCartItem.quantity}"></label>
-                            <button type="submit" class="increment">+</button>
-                        </div>
+                        <form th:action="@{/cart/update(id=${tempCartItem.id})}" method="post">
+                            <div class="quantity-selector">
+                                <button type="submit" class="decrement" disabled th:if="${tempCartItem.quantity == 1}">-</button>
+                                <button type="submit" class="decrement" name="action" value="decrement" th:if="${tempCartItem.quantity > 1}">-</button>
+                                <label th:text="${tempCartItem.quantity}"></label>
+                                <button type="submit" class="increment" name="action" value="increment">+</button>
+                            </div>
+                        </form>
                     </td>
                     <td th:text="${tempCartItem.total_price}"></td>
                 </tr>
                 </tbody>
             </table>
-        </form>
     </div>
 
     <div class="invoice-container">
