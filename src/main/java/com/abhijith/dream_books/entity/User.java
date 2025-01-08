@@ -20,8 +20,8 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "role")
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 
     public User(){}

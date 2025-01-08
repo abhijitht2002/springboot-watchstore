@@ -47,7 +47,6 @@ public class Product {
     public Product(){}
 
     public Product(String product_name, String product_brand, String product_gender, String product_thumbnail, String product_description, String product_specifications, BigDecimal product_price, LocalDateTime created_at) {
-        this.product_id = product_id;
         this.product_name = product_name;
         this.product_brand = product_brand;
         this.product_gender = product_gender;
@@ -153,7 +152,7 @@ public class Product {
                 '}';
     }
 
-//    helper methods
+    //    helper methods
     public void addImage(productImages image){
         imagesList.add(image);
         image.setProduct(this);
@@ -161,7 +160,7 @@ public class Product {
 
     public void removeImage(productImages image){
         imagesList.remove(image);
-        image.setProduct(this);
+        image.setProduct(null);
     }
 
 }
