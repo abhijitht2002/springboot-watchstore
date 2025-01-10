@@ -15,6 +15,9 @@ public class Address {
     @JoinColumn(name = "order_id")
     private Orders order;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "mobile")
     private String mobile;
 
@@ -32,8 +35,9 @@ public class Address {
 
     public Address(){}
 
-    public Address(Orders order, String mobile, String addressline, String city, String state, String zipcode) {
+    public Address(Orders order, String name, String mobile, String addressline, String city, String state, String zipcode) {
         this.order = order;
+        this.name = name;
         this.mobile = mobile;
         this.addressline = addressline;
         this.city = city;
@@ -55,6 +59,14 @@ public class Address {
 
     public void setOrder(Orders order) {
         this.order = order;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getMobile() {
@@ -102,6 +114,7 @@ public class Address {
         return "Address{" +
                 "address_id=" + address_id +
                 ", order=" + order +
+                ", name='" + name + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", addressline='" + addressline + '\'' +
                 ", city='" + city + '\'' +

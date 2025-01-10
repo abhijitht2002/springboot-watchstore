@@ -1,0 +1,72 @@
+body{
+
+	background-color: #F2F3F7;
+}
+.horizontal-line{
+    flex-grow: 1;	/* Line takes up the remaining space */
+    height: 1px;	/* Thickness of the line */
+    background-color: #D3D3D3;	/* Line color */
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.payment-section{
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 100px;
+	gap: 50px;
+	background-color: #F2F3F7;
+
+}
+
+.invoice-container{
+/*	position: sticky;*/
+	display: flex;
+	flex-direction: column;
+	width: 600px;
+/*	width: 300px;*/
+/*	flex: 1;*/
+/*	height: 400px;*/
+	background-color: white;
+/*	position: sticky;*/
+/*    top: 20px;*/
+/*    bottom: 20px;*/
+    padding: 20px;
+/*    z-index: 100;*/
+}
+.price-row{
+	display: flex;
+	justify-content: space-between;
+}
+.price-row span:first-child{
+	text-align: left;
+}
+.price-row span:last-child{
+	text-align: right;
+}
+
+.payment-container{
+
+	display: flex;
+	flex-direction: column;
+	width: 600px;
+/*	height: 500px;*/
+/*	border: 1px solid black;*/
+	background-color: white;
+	padding: 20px;
+}
+
+.payment-container ul {
+
+	list-style: none;
+	text-decoration: none;
+}
+
+.payment-details{
+
+	margin-left: 30px;
+	margin-bottom: 20px;
+}

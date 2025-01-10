@@ -176,4 +176,25 @@ public class Orders {
     protected void onUpdate(){
         updated_at = LocalDateTime.now();
     }
+
+    //  helper methods
+    public void addItem(OrderItems item){
+        items.add(item);
+        item.setOrders(this);
+    }
+
+    public void removeItem(OrderItems item){
+        items.remove(item);
+        item.setOrders(null);
+    }
+
+    public void addAddress(Address address){
+        this.address = address;
+        address.setOrder(this);
+    }
+
+    public void removeAddress(Address address){
+        this.address.setOrder(null);
+        this.address=null;
+    }
 }

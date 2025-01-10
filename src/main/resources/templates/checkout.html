@@ -33,38 +33,38 @@
 
 <section class="checkout-container">
 
-    <form action="payment.html" method="post">
+    <form th:action="@{/checkout/process(id=${order.order_id})}" method="post">
 
         <div class="address-container">
             <span class="heading2">DELIVERY ADDRESS</span>
             <div class="address-form">
                 <div class="form-row">
                     <div class="form-group col-md-2">
-                        <label for="inputEmail4">Name</label>
-                        <input type="text" class="form-control" id="inputEmail4" placeholder="John Doe">
+                        <label for="inputName">Name</label>
+                        <input type="text" class="form-control" id="inputName" placeholder="John Doe" th:name="name" required>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="inputEmail4">Mobile No.</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="9999999999">
+                        <label for="inputMobile">Mobile No.</label>
+                        <input type="text" class="form-control" id="inputMobile" placeholder="9999999999" th:name="mobile" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label class="">Address</label>
-                        <textarea class="form-control " id="exampleFormControlTextarea1" rows="4" style="resize: none;" placeholder="House Name/No., Main Street, Your County, and Anytown"></textarea>
+                        <label for="exampleFormControlTextarea1">Address</label>
+                        <textarea class="form-control " id="exampleFormControlTextarea1" rows="4" style="resize: none;" placeholder="House Name/No., Main Street, Your County, and Anytown" th:name="address" required></textarea>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="inputCity">City</label>
-                        <input type="text" class="form-control" id="inputCity" placeholder="Your City">
+                        <input type="text" class="form-control" id="inputCity" placeholder="Your City" th:name="city" required>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="inputState">State</label>
-                        <select id="inputState" class="form-control">
+                        <select id="inputState" class="form-control" th:name="state" required>
                             <option selected>Choose...</option>
                             <option>Kerala</option>
                             <option>Tamil Nadu</option>
@@ -77,7 +77,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="inputZip">Zip Code</label>
-                        <input type="text" class="form-control" id="inputZip" placeholder="Zip Code">
+                        <input type="text" class="form-control" id="inputZip" placeholder="Zip Code" th:name="zipcode" required>
                     </div>
                 </div>
             </div>
@@ -100,16 +100,16 @@
                 <tr>
                     <td>
                         <div class="cart-product">
-                            <img src="./product_images/watch1.jpg">
+                            <img th:src="${orderItem.product.product_thumbnail}">
                             <div class="product-info">
-                                <span class="product-title"><a href="#">Maroon Dial Quartz Multifunction Watch</a></span>
-                                <span class="product-brand">Brand: SONATA</span>
+                                <span class="product-title" th:text="${orderItem.product.product_name}"></span>
+                                <span class="product-brand" th:text="${orderItem.product.product_brand}"></span>
                             </div>
                         </div>
                     </td>
-                    <td>345</td>
-                    <td>10</td>
-                    <td>345</td>
+                    <td th:text="${orderItem.price}"></td>
+                    <td th:text="${orderItem.quantity}"></td>
+                    <td th:text="${orderItem.total}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -131,7 +131,7 @@
             <div class="horizontal-line2"></div>
             <div class="price-row">
                 <span><strong>Total Amount:</strong></span>
-                <span><strong>5000</strong></span>
+                <span th:text="${order.total}"><strong></strong></span>
             </div>
 
             <button type="submit">PROCEED TO PAYMENT</button>

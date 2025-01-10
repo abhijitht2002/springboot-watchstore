@@ -1,7 +1,9 @@
 package com.abhijith.dream_books.controller;
 
 import com.abhijith.dream_books.dao.*;
+import com.abhijith.dream_books.dto.AddressDTO;
 import com.abhijith.dream_books.entity.*;
+import com.abhijith.dream_books.service.AddressService;
 import com.abhijith.dream_books.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -33,15 +36,20 @@ public class controller {
     private UserService theUserService;
     private Wishlist wishlist;
     private WishlistDAO theWishlistDAO;
+    private OrderDAO theOrderDAO;
+    private OrderItemDAO theOrderItemDAO;
+    private AddressService theAddressService;
 
-    @Autowired
-    public controller(categoryDao theCategoryDao, productDAO theProductDAO, CartDAO theCartDAO, UserDAO theUserDAO, UserService theUserService, WishlistDAO theWishlistDAO) {
+    public controller(categoryDao theCategoryDao, productDAO theProductDAO, CartDAO cartDAO, UserDAO theUserDAO, UserService theUserService, WishlistDAO theWishlistDAO, OrderDAO theOrderDAO, OrderItemDAO theOrderItemDAO, AddressService theAddressService) {
         this.theCategoryDao = theCategoryDao;
         this.theProductDAO = theProductDAO;
-        this.cartDAO = theCartDAO;
+        this.cartDAO = cartDAO;
         this.theUserDAO = theUserDAO;
         this.theUserService = theUserService;
         this.theWishlistDAO = theWishlistDAO;
+        this.theOrderDAO = theOrderDAO;
+        this.theOrderItemDAO = theOrderItemDAO;
+        this.theAddressService = theAddressService;
     }
 
     @GetMapping("/")
@@ -289,10 +297,18 @@ public class controller {
         if(action.equals("buy-now")){
 
             System.out.println(theProduct);
-            //  since redirection
-            //  Pass product ID and quantity to the checkout page
-            redirectAttributes.addAttribute("productId", productId);
-            redirectAttributes.addAttribute("quantity", theQuantity);
+            //  since buy-now so there will be only one product obviously ... saving the order item here itself and initializing a new order and passing the order Id to checkout
+
+            Orders newOrder = new Orders(theUser, grandtotal, new BigDecimal(0), grandtotal, OrderStatus.PENDING);
+
+            OrderItems orderItem = new OrderItems(newOrder, theProduct, theProduct.getProduct_price(), quantity, theProduct.getProduct_price().multiply(theQuantity));
+
+            newOrder.addItem(orderItem);
+
+            theOrderDAO.save(newOrder);
+
+            redirectAttributes.addFlashAttribute("orderId", newOrder.getOrder_id());
+
             return "redirect:/checkout";
 
             //  return "redirect:/checkout?id=" + productId;
@@ -359,11 +375,48 @@ public class controller {
     }
 
     @GetMapping("/checkout")
-    public String showCheckoutPage(@RequestParam("productId") Long productId,
-                                   @RequestParam("quantity") BigDecimal quantity,
+    public String showCheckoutPage(@ModelAttribute("orderId") Long orderId,
                                    Model theModel){
 
+        Orders theOrder = theOrderDAO.findOrderById(orderId);
+        OrderItems theOrderItem = theOrderItemDAO.findOrderItemByOrder(theOrder);
+
+        theModel.addAttribute("order", theOrder);
+        theModel.addAttribute("orderItem", theOrderItem);
+
         return "checkout";
+    }
+
+    @PostMapping("/checkout/process")
+    public String proceedToPayment(@RequestParam Long id,
+                                   @ModelAttribute AddressDTO addressDTO,
+                                   Model theModel,
+                                   RedirectAttributes redirectAttributes){
+
+        System.out.println(addressDTO);
+
+        Orders order = theOrderDAO.findOrderById(id);
+
+        Address address = theAddressService.createAddressFromDTO(addressDTO, order);
+
+        order.addAddress(address);
+
+        theOrderDAO.save(order);
+
+        redirectAttributes.addFlashAttribute("order", order.getOrder_id());
+
+        return "redirect:/payment";
+    }
+
+    @GetMapping("/payment")
+    public String showPaymentPage(@ModelAttribute("order") Long id,
+                                  Model theModel){
+
+        Orders theOrder = theOrderDAO.findOrderById(id);
+
+        theModel.addAttribute("order", theOrder);
+
+        return "payment";
     }
 
     @GetMapping("/register")

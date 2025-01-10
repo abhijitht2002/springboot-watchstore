@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </td>
-                    <td th:text="${tempCartItem.theProduct.product_price}">345</td>
+                    <td th:text="${tempCartItem.theProduct.product_price}"></td>
                     <td class="quantity-field">
                         <form th:action="@{/cart/update(id=${tempCartItem.id})}" method="post">
                             <div class="quantity-selector">

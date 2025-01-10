@@ -23,7 +23,6 @@ public class category {
     public category(){}
 
     public category(String category_title, String category_image_url, String description) {
-        this.category_id = category_id;
         this.category_title = category_title;
         this.category_image_url = category_image_url;
         this.description = description;
