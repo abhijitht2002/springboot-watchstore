@@ -90,8 +90,10 @@
             <span><strong>Total Amount:</strong></span>
             <span><strong>5000</strong></span>
         </div>
-        <hr>
-        <button type="submit">CHECKOUT</button>
+
+        <form th:action="@{/cart/checkout}" method="post">
+            <button type="submit" name="action" value="cartCheckout">PROCEED TO PAYMENT</button>
+        </form>
     </div>
 
 </section>

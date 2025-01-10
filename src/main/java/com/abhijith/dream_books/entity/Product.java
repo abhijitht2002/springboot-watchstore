@@ -40,7 +40,7 @@ public class Product {
     @Column(name = "created_at")
     private LocalDateTime created_at;
 
-//
+    //
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<productImages> imagesList = new ArrayList<>();
 

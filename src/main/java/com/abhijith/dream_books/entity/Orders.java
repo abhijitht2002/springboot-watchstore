@@ -20,9 +20,6 @@ public class Orders {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "address")
-    private String address;
-
     @Column(name = "subtotal")
     private BigDecimal subtotal;
 
@@ -42,6 +39,9 @@ public class Orders {
     @Column(name = "updated_at")
     private LocalDateTime updated_at;
 
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Address address;
+
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<OrderItems> items = new ArrayList<>();
 
@@ -50,9 +50,8 @@ public class Orders {
 
     public Orders(){}
 
-    public Orders(User user, String address, BigDecimal subtotal, BigDecimal other_charges, BigDecimal total, OrderStatus orderStatus) {
+    public Orders(User user, BigDecimal subtotal, BigDecimal other_charges, BigDecimal total, OrderStatus orderStatus) {
         this.user = user;
-        this.address = address;
         this.subtotal = subtotal;
         this.other_charges = other_charges;
         this.total = total;
@@ -73,14 +72,6 @@ public class Orders {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public BigDecimal getSubtotal() {
@@ -131,6 +122,7 @@ public class Orders {
         this.updated_at = updated_at;
     }
 
+    //  getter and setter for referenced address, orderitem, payment
     public List<OrderItems> getItems() {
         return items;
     }
@@ -139,19 +131,36 @@ public class Orders {
         this.items = items;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
     @Override
     public String toString() {
         return "Orders{" +
                 "order_id=" + order_id +
                 ", user=" + user +
-                ", address='" + address + '\'' +
                 ", subtotal=" + subtotal +
                 ", other_charges=" + other_charges +
                 ", total=" + total +
                 ", orderStatus=" + orderStatus +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
+                ", address=" + address +
                 ", items=" + items +
+                ", payment=" + payment +
                 '}';
     }
 

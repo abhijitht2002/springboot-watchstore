@@ -15,7 +15,7 @@ public class Payment {
     private int payment_id;
 
     @OneToOne
-    @Column(name = "order_id")
+    @JoinColumn(name = "order_id")
     private Orders orders;
 
     @Enumerated(EnumType.STRING)

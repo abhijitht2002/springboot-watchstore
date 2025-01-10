@@ -1,30 +1,50 @@
-.cart-head{
+.horizontal-line{
+    flex-grow: 1;	/* Line takes up the remaining space */
+    height: 1px;	/* Thickness of the line */
+    background-color: #daa520;	/* Line color */
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.horizontal-line2{
+    flex-grow: 1;	/* Line takes up the remaining space */
+    height: 1px;	/* Thickness of the line */
+    background-color: #D3D3D3;	/* Line color */
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.heading1{
+
 	font-size: 32px;
+}
+.heading2{
+
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.checkout-head{
+
 	background-color: #FDFAF5;
-/*	height: 200px;*/
 	padding: 50px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 }
+.checkout-container{
 
-.cart-container{
+	padding: 30px;
 	display: flex;
-	justify-content: space-between;
-	padding-left: 30px;
-	padding-right: 30px;
-	gap: 20px;
+	flex-direction: column;
 }
 
-.cart-products-container{
-/*	width: 900px;*/
-/*	flex: 1;	*/	/* Invoice takes up the remaining space */
-/*	flex: 2;	*/	/* Product table takes up twice as much space */
-	flex: 3;
+.address-form{
+
+	margin-top: 10px;
 }
+
 .table{
-/*	width: 100%;*/
+
     border-collapse: separate; /* Ensures spacing works */
     border-spacing: 10px;
 }
@@ -38,13 +58,8 @@
 .table tbody tr i:hover{
 	color: #FF0000;
 }
-.table tr .quantity-field{
-	text-align: center; /* Aligns content horizontally */
-    vertical-align: middle;
-}
 .cart-product{
-/*	width: 200px;*/
-/*	height: 50px;*/
+
 	display: flex;
 	align-items: flex-start; /* Align items at the top */
     gap: 10px; /* Add space between the image and text */
@@ -78,32 +93,12 @@
     gap: 8px;
     border: 1px solid black;
 }
-.quantity-selector label{
-/*	flex: 1;*/
-	align-items: center;
-	justify-content: center;
-}
-.quantity-selector button{
-	border: none;
-	height: auto;
-	flex: 1;
-}
-.quantity-selector button:hover{
-	cursor: pointer;
-}
 
 .invoice-container{
-	position: sticky;
+
 	display: flex;
 	flex-direction: column;
-/*	width: 300px;*/
-	flex: 1;	/* Invoice takes up the remaining space */
-	height: 400px;
-/*	background-color: cyan;*/
-/*	position: sticky;*/
-    top: 20px;  /* Adjust the distance from the top as needed */
-    padding: 15px;
-/*    z-index: 100;*/
+	width: 600px;
 }
 .price-row{
 	display: flex;
@@ -129,23 +124,4 @@
 .invoice-container button:focus, .invoice-container button:active{
 	border: none;
 	outline: none;
-}
-
-/*-----------ERROR----------*/
-.cart-container-error{
-	padding: 50px;
-}
-.cart-error{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 10px;
-}
-.cart-error img{
-	width: 300px;
-	height: 300px;
-}
-.cart-error span{
-	font-size: 24px;
 }

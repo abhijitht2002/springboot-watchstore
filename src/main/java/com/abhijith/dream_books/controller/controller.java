@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -259,35 +260,42 @@ public class controller {
                             @RequestParam int quantity,
                             Model theModel,
                             @RequestParam String action,
-                            @RequestParam String sourcePage){
+                            @RequestParam String sourcePage,
+                            RedirectAttributes redirectAttributes){
+
+        String username = (String) theModel.getAttribute("username");
+        //  check if username is null
+        if(username == null){
+
+            return "redirect:/login";
+        }
+        //  if user not null then find User(entity) by username
+        User theUser = theUserDAO.findByUsername(username);
+
+        //  get the product by productId
+        Product theProduct = theProductDAO.findById(productId);
 
         System.out.println(action);
+
+        BigDecimal price = theProduct.getProduct_price();
+        BigDecimal theQuantity = new BigDecimal(quantity);
+        BigDecimal grandtotal = price.multiply(theQuantity);
+
         if (action.equals("add-to-cart")){
-            String username = theUserService.getAuthenticatedUsername();
-
-            //  check if username is null
-            if(username == null){
-
-                return "redirect:/login";
-            }
-            //  if user not null then find User(entity) by username
-            User theUser = theUserDAO.findByUsername(username);
-
-            Product theProduct = theProductDAO.findById(productId);
-
-            BigDecimal price = theProductDAO.findPriceById(productId);
-            BigDecimal theQuantity = new BigDecimal(quantity);
-            BigDecimal grandtotal = price.multiply(theQuantity);
 
             Cart thCart = new Cart(theUser, theProduct, quantity, LocalDateTime.now(), LocalDateTime.now(), grandtotal);
-
             cartDAO.save(thCart);
-
-//            return "redirect:/shop";
         }else
         if(action.equals("buy-now")){
 
-            System.out.println("if buy-now button is clicked then redirect to /buy-now here");
+            System.out.println(theProduct);
+            //  since redirection
+            //  Pass product ID and quantity to the checkout page
+            redirectAttributes.addAttribute("productId", productId);
+            redirectAttributes.addAttribute("quantity", theQuantity);
+            return "redirect:/checkout";
+
+            //  return "redirect:/checkout?id=" + productId;
         }
 
         if(sourcePage.equals("product")){
@@ -336,6 +344,26 @@ public class controller {
         System.out.println("item removed successfully!");
 
         return "redirect:/cart-page";
+    }
+
+    @PostMapping("/cart/checkout")
+    public String showCartCheckoutPage(Model theModel,
+                                   @RequestParam String action){
+
+        String userName = (String) theModel.getAttribute("username");
+        User theUser = theUserDAO.findByUsername(userName);
+
+        System.out.println(action);
+
+        return "checkout";
+    }
+
+    @GetMapping("/checkout")
+    public String showCheckoutPage(@RequestParam("productId") Long productId,
+                                   @RequestParam("quantity") BigDecimal quantity,
+                                   Model theModel){
+
+        return "checkout";
     }
 
     @GetMapping("/register")
