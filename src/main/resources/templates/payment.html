@@ -57,8 +57,9 @@
             <label for="cod">COD</label>
 
             <div id="cod-section" class="payment-details" style="display: none;">
-                <!-- <a href="payment-success.html">PAY ${rs. amount payable} ON DELIVERY</a> -->
-                <button class="btn btn-primary" type="button" th:text="'PAY ' + ${order.total} + 'rs' + ' ON DELIVERY'"></button>
+                <form th:action="@{/cod(id=${orderId})}" method="post">
+                    <button class="btn btn-primary" id="codPaymentButton" type="submit" th:text="'PAY ' + ${order.total} + 'rs' + ' ON DELIVERY'"></button>
+                </form>
             </div>
         </div>
         <!-- end of cash on delivery section -->
@@ -69,7 +70,7 @@
             <label for="card">Card</label>
 
             <div id="card-section" class="payment-details" style="display: none;">
-                <button class="btn btn-primary" type="button" th:text="'PAY ' + ${order.total} + 'rs' + ' NOW'"></button>
+                    <button class="btn btn-primary" id="cardPaymentButton" type="button" th:text="'PAY ' + ${order.total} + 'rs' + ' NOW'"></button>
             </div>
         </div>
         <!-- end of card section -->

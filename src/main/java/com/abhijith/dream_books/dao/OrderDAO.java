@@ -6,5 +6,7 @@ public interface OrderDAO{
 
     void save(Orders orders);
 
+    void update(Orders orders);
+
     Orders findOrderById(Long id);
 }

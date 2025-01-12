@@ -1,6 +1,7 @@
 package com.abhijith.dream_books.entity;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -40,12 +41,21 @@ public class Payment {
 
     public Payment(){}
 
+    @Autowired
     public Payment(Orders orders, PaymentMode paymentMode, PaymentStatus paymentStatus, BigDecimal amount, String transaction_id) {
         this.orders = orders;
         this.paymentMode = paymentMode;
         this.paymentStatus = paymentStatus;
         this.amount = amount;
         this.transaction_id = transaction_id;
+    }
+
+    @Autowired
+    public Payment(Orders orders, PaymentMode paymentMode, PaymentStatus paymentStatus, BigDecimal amount) {
+        this.orders = orders;
+        this.paymentMode = paymentMode;
+        this.paymentStatus = paymentStatus;
+        this.amount = amount;
     }
 
     public int getPayment_id() {

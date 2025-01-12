@@ -4,6 +4,7 @@ import com.abhijith.dream_books.dao.*;
 import com.abhijith.dream_books.dto.AddressDTO;
 import com.abhijith.dream_books.entity.*;
 import com.abhijith.dream_books.service.AddressService;
+import com.abhijith.dream_books.service.PaymentService;
 import com.abhijith.dream_books.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -39,8 +40,9 @@ public class controller {
     private OrderDAO theOrderDAO;
     private OrderItemDAO theOrderItemDAO;
     private AddressService theAddressService;
+    private PaymentService thePaymentService;
 
-    public controller(categoryDao theCategoryDao, productDAO theProductDAO, CartDAO cartDAO, UserDAO theUserDAO, UserService theUserService, WishlistDAO theWishlistDAO, OrderDAO theOrderDAO, OrderItemDAO theOrderItemDAO, AddressService theAddressService) {
+    public controller(categoryDao theCategoryDao, productDAO theProductDAO, CartDAO cartDAO, UserDAO theUserDAO, UserService theUserService, WishlistDAO theWishlistDAO, OrderDAO theOrderDAO, OrderItemDAO theOrderItemDAO, AddressService theAddressService, PaymentService thePaymentService) {
         this.theCategoryDao = theCategoryDao;
         this.theProductDAO = theProductDAO;
         this.cartDAO = cartDAO;
@@ -50,6 +52,7 @@ public class controller {
         this.theOrderDAO = theOrderDAO;
         this.theOrderItemDAO = theOrderItemDAO;
         this.theAddressService = theAddressService;
+        this.thePaymentService = thePaymentService;
     }
 
     @GetMapping("/")
@@ -401,7 +404,9 @@ public class controller {
 
         order.addAddress(address);
 
-        theOrderDAO.save(order);
+        order.setUpdated_at(LocalDateTime.now());
+
+        theOrderDAO.update(order);
 
         redirectAttributes.addFlashAttribute("order", order.getOrder_id());
 
@@ -415,8 +420,24 @@ public class controller {
         Orders theOrder = theOrderDAO.findOrderById(id);
 
         theModel.addAttribute("order", theOrder);
+        theModel.addAttribute("orderId", theOrder.getOrder_id());
+        theModel.addAttribute("totalAmt", theOrder.getTotal());
 
         return "payment";
+    }
+
+    @PostMapping("/cod")
+    public String processCODPayment(@RequestParam("id") Long orderId){
+
+        thePaymentService.createCodPayment(orderId);
+
+        return "redirect:/payment/success";
+    }
+
+    @GetMapping("/payment/success")
+    public String showPaymentSuccess(){
+
+        return "payment-success";
     }
 
     @GetMapping("/register")

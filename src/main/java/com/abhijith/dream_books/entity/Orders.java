@@ -174,7 +174,7 @@ public class Orders {
     //  the preupdate methods to add the current time just before update happens i.e., no manual date insertion needed
     @PreUpdate
     protected void onUpdate(){
-        updated_at = LocalDateTime.now();
+        this.updated_at = LocalDateTime.now();
     }
 
     //  helper methods

@@ -13,3 +13,6 @@ function togglePaymentSection(method) {
 		codSection.style.display = 'none';
 	}
 }
+
+
+

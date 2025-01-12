@@ -21,6 +21,12 @@ public class OrderDaoImpl implements OrderDAO{
     }
 
     @Override
+    @Transactional
+    public void update(Orders orders) {
+        theEntityManager.merge(orders);
+    }
+
+    @Override
     public Orders findOrderById(Long id) {
         return theEntityManager.find(Orders.class, id);
     }
