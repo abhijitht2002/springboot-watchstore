@@ -27,6 +27,12 @@ public class OrderDaoImpl implements OrderDAO{
     }
 
     @Override
+    @Transactional
+    public void deleteAll() {
+        theEntityManager.createQuery("DELETE FROM Orders").executeUpdate();
+    }
+
+    @Override
     public Orders findOrderById(Long id) {
         return theEntityManager.find(Orders.class, id);
     }

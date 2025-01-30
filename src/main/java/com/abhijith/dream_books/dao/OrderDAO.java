@@ -8,5 +8,7 @@ public interface OrderDAO{
 
     void update(Orders orders);
 
+    void deleteAll();
+
     Orders findOrderById(Long id);
 }

@@ -75,6 +75,8 @@
     </div>
 
     <div class="invoice-container">
+
+        <form th:action="@{/cart/process}" method="POST">
         <span><strong>PRICE DETAILS</strong></span>
         <hr>
         <div class="price-row">
@@ -91,8 +93,7 @@
             <span><strong>5000</strong></span>
         </div>
 
-        <form th:action="@{/cart/checkout}" method="post">
-            <button type="submit" name="action" value="cartCheckout">PROCEED TO PAYMENT</button>
+            <button type="submit" name="action" value="cartCheckout">CHECKOUT</button>
         </form>
     </div>
 

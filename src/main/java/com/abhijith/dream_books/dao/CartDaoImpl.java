@@ -39,6 +39,15 @@ public class CartDaoImpl implements CartDAO{
 
     @Override
     @Transactional
+    public void deleteCartOfUser(User theUser) {
+
+        theEntityManager.createQuery("DELETE FROM Cart WHERE theUser=:theUser")
+                .setParameter("theUser", theUser)
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
     public void updateCartItem(Long id, int newQty) {
 
         Cart theCartItem = findById(id);
@@ -77,6 +86,11 @@ public class CartDaoImpl implements CartDAO{
 
     @Override
     public List<Cart> findItemByUserAndProduct(User theUser, Product theProduct) {
-        return List.of();
+
+        TypedQuery<Cart> theQuery = theEntityManager.createQuery("FROM Cart WHERE theUser=:theUser AND theProduct=:theProduct", Cart.class);
+        theQuery.setParameter("theUser", theUser);
+        theQuery.setParameter("theProduct", theProduct);
+
+        return theQuery.getResultList();
     }
 }

@@ -183,6 +183,13 @@ public class Orders {
         item.setOrders(this);
     }
 
+    public void addItems(List<OrderItems> itemsList){
+        for (OrderItems item : itemsList){
+            items.add(item);
+            item.setOrders(this);
+        }
+    }
+
     public void removeItem(OrderItems item){
         items.remove(item);
         item.setOrders(null);

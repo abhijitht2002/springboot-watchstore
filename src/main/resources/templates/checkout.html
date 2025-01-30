@@ -33,7 +33,7 @@
 
 <section class="checkout-container">
 
-    <form th:action="@{/checkout/process(id=${order.order_id})}" method="post">
+    <form th:action="@{/checkout/process(id=${order.order_id}, action=${action})}" method="post">
 
         <div class="address-container">
             <span class="heading2">DELIVERY ADDRESS</span>
@@ -97,19 +97,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="item : ${orderItems}">
                     <td>
                         <div class="cart-product">
-                            <img th:src="${orderItem.product.product_thumbnail}">
+                            <img th:src="${item.product.product_thumbnail}">
                             <div class="product-info">
-                                <span class="product-title" th:text="${orderItem.product.product_name}"></span>
-                                <span class="product-brand" th:text="${orderItem.product.product_brand}"></span>
+                                <span class="product-title" th:text="${item.product.product_name}"></span>
+                                <span class="product-brand" th:text="${item.product.product_brand}"></span>
                             </div>
                         </div>
                     </td>
-                    <td th:text="${orderItem.price}"></td>
-                    <td th:text="${orderItem.quantity}"></td>
-                    <td th:text="${orderItem.total}"></td>
+                    <td th:text="${item.price}"></td>
+                    <td th:text="${item.quantity}"></td>
+                    <td th:text="${item.total}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -134,7 +134,7 @@
                 <span th:text="${order.total}"><strong></strong></span>
             </div>
 
-            <button type="submit">PROCEED TO PAYMENT</button>
+            <button type="submit">PLACE ORDER</button>
         </div>
 
     </form>

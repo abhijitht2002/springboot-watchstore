@@ -9,15 +9,14 @@ import java.time.LocalDateTime;
 @Service
 public class PaymentService {
 
+
     private OrderDAO theOrderDAO;
 
     public PaymentService(OrderDAO theOrderDAO) {
         this.theOrderDAO = theOrderDAO;
     }
 
-    public void createCodPayment(Long id){
-
-        Orders theOrders = theOrderDAO.findOrderById(id);
+    public Orders createPayment(Orders theOrders){
 
         Payment thePayment = new Payment(theOrders, PaymentMode.COD, PaymentStatus.PENDING, theOrders.getTotal());
 
@@ -27,7 +26,6 @@ public class PaymentService {
 
         theOrders.setOrderStatus(OrderStatus.PLACED);
 
-        theOrderDAO.update(theOrders);
-
+        return theOrders;
     }
 }

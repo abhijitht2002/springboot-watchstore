@@ -9,6 +9,10 @@
     <link rel="stylesheet" type="text/css" href="/css/payment.css">
     <!--  end of css  -->
 
+    <!--    stripe    -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!--    end of stripe    -->
+
     <!-- bootstrap -->
     <!-- for a special sliding effect for banner bootstrap 4.0 is used ... can be changed any time -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -70,7 +74,7 @@
             <label for="card">Card</label>
 
             <div id="card-section" class="payment-details" style="display: none;">
-                    <button class="btn btn-primary" id="cardPaymentButton" type="button" th:text="'PAY ' + ${order.total} + 'rs' + ' NOW'"></button>
+                    <button class="btn btn-primary" id="cardPaymentButton" th:text="'PAY ' + ${order.total} + 'rs' + ' NOW'"></button>
             </div>
         </div>
         <!-- end of card section -->

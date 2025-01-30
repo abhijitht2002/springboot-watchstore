@@ -1,5 +1,6 @@
 package com.abhijith.dream_books;
 
+import com.abhijith.dream_books.dao.OrderDAO;
 import com.abhijith.dream_books.dao.categoryDao;
 import com.abhijith.dream_books.dao.productDAO;
 import com.abhijith.dream_books.entity.Product;
@@ -23,12 +24,13 @@ public class WatchWorldMainApplication {
 	}
 
 	@Bean
-	public CommandLineRunner cmdRunner(categoryDao theCategoryDao, productDAO theProductDAO){
+	public CommandLineRunner cmdRunner(categoryDao theCategoryDao, productDAO theProductDAO, OrderDAO theOrderDAO){
 		return runner -> {
 //			insertData(theCategoryDao);
 //			insertMultipleData(theCategoryDao);
 //			insertProductData(theProductDAO);
 //			insertProductDataWithExImages(theProductDAO);
+//			deleteAllOrderRecords(theOrderDAO);
 		};
 	}
 
@@ -111,5 +113,12 @@ public class WatchWorldMainApplication {
 		theCategoryDao.save(theCategory);
 
 		System.out.println("successfuly saved data ... open workbench to see the data");
+	}
+
+	private void deleteAllOrderRecords(OrderDAO theOrderDAO){
+
+		System.out.println("Warning! all order records gets deleted NOW!");
+		theOrderDAO.deleteAll();
+		System.out.println("All Order records deleted!");
 	}
 }
